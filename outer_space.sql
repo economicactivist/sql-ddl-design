@@ -9,11 +9,10 @@ CREATE DATABASE outer_space;
 
 CREATE TABLE planets
 (
-  planet_name PRIMARY KEY TEXT NOT NULL,
+  planet_name TEXT NOT NULL PRIMARY KEY,
   orbital_period_in_years FLOAT NOT NULL,
   orbits_around_star TEXT NOT NULL,
-  galaxy TEXT NOT NULL,
-  UNIQUE(planet_name)
+  galaxy TEXT NOT NULL
 );
 
 INSERT INTO planets
@@ -31,7 +30,7 @@ CREATE TABLE moons
   id SERIAL PRIMARY KEY,
   moon_name TEXT NOT NULL,
   orbits_around_planet TEXT NOT NULL,
-  CONSTRAINT orbits_around_planet FOREIGN KEY planet_name REFERENCES planets(name)
+  CONSTRAINT fk_orbits_around_planet FOREIGN KEY(orbits_around_planet) REFERENCES planets(planet_name)
 );
 
 INSERT INTO moons
@@ -40,7 +39,7 @@ VALUES
   ('The Moon', 'Earth'),
   ('Phobos', 'Mars'),
   ('Deimos', 'Mars'),
-  ('Neptune', 'Naiad'), 
+  ('Naiad', 'Neptune'), 
   ('Thalassa', 'Neptune'), 
   ('Despina', 'Neptune'), 
   ('Galatea', 'Neptune'), 

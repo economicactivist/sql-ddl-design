@@ -31,6 +31,8 @@ CREATE TABLE flights (
 
 CREATE TABLE tickets (
     id SERIAL PRIMARY KEY,
+    passenger_id int NOT NULL,
+    flight_id int NOT NULL,
     CONSTRAINT flight_id  FOREIGN KEY (id) references flights(id) ON DELETE CASCADE,
     CONSTRAINT passenger_id FOREIGN KEY (id)  REFERENCES passengers(id) ON DELETE CASCADE,
     seat text NOT NULL
@@ -67,15 +69,15 @@ VALUES
   ('2019-01-20 19:30:00', '2019-01-20 22:45:00', 'Avianca Brasil', 'Sao Paolo', 'Brazil', 'Santiago', 'Chile');
 
 INSERT INTO tickets
-  (seat)
+  (passenger_id, flight_id, seat)
 VALUES
-  ('33B'),
-  ('8A'),
-  ('12F'),
-  ('20A'),
-  ('23D'),
-  ('18C'),
-  ('9E'),
-  ('1A'),
-  ('32B'),
-  ('10D');
+  (1, 1,'33B'),
+  (2, 2,'8A'),
+  (3, 3,'12F'),
+  (1, 4,'20A'),
+  (4, 5,'23D'),
+  (2, 6,'18C'),
+  (5, 7,'9E'),
+  (6, 8,'1A'),
+  (5, 9,'32B'),
+  (7, 10,'10D');

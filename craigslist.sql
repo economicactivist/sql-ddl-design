@@ -26,6 +26,12 @@ CREATE TABLE locations
     location varchar(50) NOT NULL
 );
 
+CREATE TABLE categories
+(
+    id SERIAL PRIMARY KEY,
+    category VARCHAR(20) NOT NULL
+);
+
 CREATE TABLE users
 (
     id SERIAL PRIMARY KEY, 
@@ -41,10 +47,12 @@ CREATE TABLE posts
     title varchar(80) NOT NULL,
     text_field TEXT NOT NULL, 
     user_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
     location_field varchar(50) NOT NULL,
     location_field_id INTEGER NOT NULL,
     region_id INTEGER NOT NULL,
     constraint fk_user_id FOREIGN KEY(user_id) REFERENCES users(id),
+    constraint fk_category_id FOREIGN KEY(category_id) REFERENCES categories(id),
     constraint fk_region_id FOREIGN KEY(region_id) REFERENCES regions(id),
     constraint fk_location_field_id FOREIGN KEY(location_field_id) REFERENCES locations(id)
 );

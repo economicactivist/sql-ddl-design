@@ -36,8 +36,8 @@ CREATE TABLE doctors_patients
     id SERIAL PRIMARY KEY,
     doctor_id INTEGER NOT NULL,
     patient_id INTEGER NOT NULL,
-    CONSTRAINT fk_doctor_id FOREIGN KEY REFERENCES doctors(id),
-    CONSTRAINT fk_patient_id FOREIGN KEY REFERENCES patients(id)
+    CONSTRAINT fk_doctor_id FOREIGN KEY(doctor_id) REFERENCES doctors(id),
+    CONSTRAINT fk_patient_id FOREIGN KEY(patient_id) REFERENCES patients(id)
 );
 
 CREATE TABLE patients_diseases
@@ -45,6 +45,6 @@ CREATE TABLE patients_diseases
    id SERIAL PRIMARY KEY,
    patient_id INTEGER NOT NULL,
    disease_id INTEGER NOT NULL,
-   CONSTRAINT fk_patient_id FOREIGN KEY REFERENCES patients(id),
-   CONSTRAINT fk_disease_id FOREIGN KEY REFERENCES diseases(id) 
+   CONSTRAINT fk_patient_id FOREIGN KEY(patient_id) REFERENCES patients(id),
+   CONSTRAINT fk_disease_id FOREIGN KEY(disease_id) REFERENCES diseases(id) 
 );
